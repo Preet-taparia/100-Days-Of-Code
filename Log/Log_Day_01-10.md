@@ -10,7 +10,7 @@
 
 **Project Snapshot:**
 
-![Uploading image.png…]()
+![Hangman image](Projects/Day 1/Hangman/image.png)
 
 
 **Link in Repository:** 
