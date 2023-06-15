@@ -15,7 +15,7 @@
 
 **Link in Repository:** 
 
-
+[a relative link](Projects/Day 1/Hangman)
 
 ## Day 2 ( June 16, 2023)
 
