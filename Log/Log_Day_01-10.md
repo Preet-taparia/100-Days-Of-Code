@@ -17,6 +17,18 @@
 
 [a relative link](Projects/Day 1/Hangman)
 
+### Project 2: 100 Days of Code Challange in css
+
+**Today's Progress:** Create a HTML and CSS based image in which used gradients and it was inspired by 100 days of css challenge
+
+**Thoughts:** Used many divs, classes gradiants and much more. It was quite difficult to layout it.
+
+**Project Snapshot:**
+
+**Link in Repository:** 
+
+
+
 ## Day 2 ( June 16, 2023)
 
 ### Project :
