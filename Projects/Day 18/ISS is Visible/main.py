@@ -3,8 +3,8 @@ import ssl
 import requests
 from datetime import datetime
 
-my_lat = -140.3007  
-my_lng = 20.9143
+my_lat =
+my_lng =
 
 
 def is_iss_overhead():
