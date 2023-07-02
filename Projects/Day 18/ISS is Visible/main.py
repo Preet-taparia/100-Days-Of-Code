@@ -41,10 +41,10 @@ def is_night():
 
 if is_iss_overhead and is_night:
     
-    my_mail = "preettaparia@gmail.com"  
-    password = "fiankphuuyruaake"
+    my_mail = ""  
+    password = ""
 
-    receiver_email = "meettaparia99@gmail.com"
+    receiver_email = ""
 
     smtp_port = 587
     smtp_server = "smtp.gmail.com"
