@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card-Hover-Effects</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="title">
+                <h2> Card 1 </h2>
+            </div>
+            <div class="content">
+                <h2>01</h2>
+                <h3>Card One</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus deleniti, fuga..., Veniam dolor beatae consectetur odio incidunt.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="card">
+                        <div class="title">
+                <h2> Card 2 </h2>
+            </div>
+            <div class="content">
+                <h2>02</h2>
+                <h3>Card Two</h3>
+                <p>Nesciunt placeat asperiores repellendus quas illo in vitae ullam, doloremque maiores? Veniam dolor beatae consectetur odio incidunt.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="card">
+                        <div class="title">
+                <h2> Card 3 </h2>
+            </div>
+            <div class="content">
+                <h2>03</h2>
+                <h3>Card Three</h3>
+                <p>veritatis aliquid adipisci numquam voluptates a facilis soluta obcaecati incidunt consequuntur tenetur totam, ratione modi aut!</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/vanilla-tilt.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+            max: 25,
+            speed: 400
+        });
+    </script>
+</body>
+</html>
