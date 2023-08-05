@@ -9,7 +9,7 @@ def get_code():
 
 base = Tk()
 base.geometry("500x200")
-base.title("QRCode Generator by Aadithyu")
+base.title("QRCode Generator")
 
 data = StringVar()
 
