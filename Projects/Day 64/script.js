@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// change to 'load' at the end
-	/**@type {HTMLCanvasElement} */
+
 	const canvas = document.getElementById('canvas1');
 	const ctx = canvas.getContext('2d');
-	canvas.width = 500;
-	canvas.height = 800;
+	canvas.width = 1200;
+	canvas.height = 700;
 
 	class Game {
 		constructor(ctx, width, height) {
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			this.enemyTypes = ['worm', 'ghost', 'spider'];
 		}
 		update(deltaTime) {
-			// console.log(this.enemies);
 			this.enemies = this.enemies.filter((object) => !object.markedForDeletion);
 			if (this.enemyTimer > this.enemyInterval) {
 				this.#addNewEnemy();
@@ -40,9 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			} else if (randomEnemy == 'spider') {
 				this.enemies.push(new Spider(this));
 			}
-			/*this.enemies.sort(function (a, b) {
-				return a.y - b.y;
-			});*/
+
 		}
 	}
 
@@ -57,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		update(deltaTime) {
 			this.x -= this.vx * deltaTime;
-			// remove enemies
 			if (this.x < 0 - this.width) {
 				this.markedForDeletion = true;
 			}
@@ -118,6 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			super.update(deltaTime);
 			this.y += Math.sin(this.angle) * this.curve;
 			this.angle += 0.04;
+			for (let i = 0; i < 3; i++) {
+				particles.push(new Particle(this.x, this.y, this.width, this.color));
+			}
 		}
 
 		draw(ctx) {
@@ -140,9 +138,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			this.vx = 0;
 			this.vy = Math.random() * 0.1 + 0.1;
 			this.maxLength = Math.random() * this.game.height;
+			this.hue = 0;
+			this.hueIncrement = 1;
+			this.webtThickness = 3;
 		}
 		update(deltaTime) {
-			//remove spiders
 			super.update(deltaTime);
 			if (this.y < 0 - this.height * 2) {
 				this.markedForDeletion = true;
@@ -151,9 +151,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (this.y > this.maxLength) {
 				this.vy *= -1;
 			}
+			this.hue = (this.hue + this.hueIncrement) % 360;
 		}
 		draw(ctx) {
 			ctx.beginPath();
+			ctx.strokeStyle = `hsl(${this.hue}, 50%, 50%)`;
+			ctx.lineWidth = this.webtThickness;
 			ctx.moveTo(this.x + this.width / 2, 0);
 			ctx.lineTo(this.x + this.width / 2, this.y + 10);
 			ctx.stroke();
@@ -161,12 +164,50 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
+
+	let particles = [];
+	class Particle {
+		constructor(x, y, size, color) {
+			this.size = size;
+			this.x = x + this.size / 2 + Math.random() * 50 - 30 ;
+			this.y = y + this.size / 3 + Math.random() * 50 + 20;
+			this.radius = (Math.random() * this.size) / 10;
+			this.maxRadius = Math.random() * 20 + 35;
+			this.markedForDeletion = false;
+			this.speedX = Math.random() * 1 + 0.5;
+			this.color = color;
+		}
+		update() {
+			this.x += this.speedX;
+			this.radius += 0.3;
+			if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
+		}
+		draw() {
+			ctx.save();
+			ctx.globalAlpha = 0.2 - this.radius / (this.maxRadius * 5);
+			ctx.beginPath();
+			ctx.fillStyle = this.color;
+			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+			ctx.fill();
+			ctx.restore();
+		}
+	}
+
+	
+
 	const game = new Game(ctx, canvas.width, canvas.height);
 	let lastTime = 1;
 	function animate(timeStamp) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const deltaTime = timeStamp - lastTime;
 		lastTime = timeStamp;
+
+		particles = particles.filter((particle) => !particle.markedForDeletion);
+		particles.forEach((particle) => {
+		  particle.update();
+		  particle.draw();
+		});
+
 		game.update(deltaTime);
 		game.draw();
 		requestAnimationFrame(animate);
