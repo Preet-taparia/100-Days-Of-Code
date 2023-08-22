@@ -1,0 +1,19 @@
+{
+  "name": "New Tab",
+  "version": "0.0.1",
+  "description": "Replace new tab page with Particle Effect",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "author": {
+    "name": "Preet Taparia"
+    
+  }
+}
