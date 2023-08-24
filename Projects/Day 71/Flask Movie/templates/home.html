@@ -1,0 +1,22 @@
+{% extends "components/base.html" %}
+
+{% block main %}
+
+{% include "components/slider.html" %}
+
+<div class="container-fluid mx-auto">
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-md-3 mt-2 mb-3  ">
+            <div class="card h-100 ">
+                <img src="http://image.tmdb.org/t/p/w500{{movie.backdrop_path}}" class="card-img-top" alt="...">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"> <button type="button" class="btn btn-outline-info">{{movie.original_title}}</button> </h5>
+                    <p class="card-text">{{movie.overview.split()[:20]|join(' ') + "......"}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main %}
