@@ -14,7 +14,7 @@ def hello_world():
     
     headers = {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MDliOWE2YTNiNWIxYjVmNzExYTA5NTRkYTBmOWIwMyIsInN1YiI6IjY0ZDUwMDg4ZGI0ZWQ2MDExYzRiMDYzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gNvLElF8njwEQKMOJApMg4dB6aS7RAwPrQ0NhKdGISE"
+        "Authorization": "Bearer <API_KEY>"
     }
     
     req = urllib.request.Request(url, headers=headers)
