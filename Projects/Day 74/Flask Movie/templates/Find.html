@@ -1,0 +1,30 @@
+{% extends "components/base.html" %}
+
+{% block title %}The Movie App{% endblock title %}
+
+{% block main %}
+
+<div class="search-container">
+    <div class="search-element">
+        <h3 style="margin: 3vh 5vw">Search Movie:</h3>
+        <div style="display: flex;margin: 1vh 5vw;">
+            <input type="text" class="form-control me-3" placeholder="Search Movie Title ..."
+                id="movie-search-box" onkeyup="findMovies()" onclick="findMovies()">
+            <button class="btn btn-primary search-button" onclick="findMovies()">Search</button>
+
+        </div>
+
+    </div>
+    <!-- end of search container -->
+
+    <!-- result container -->
+    <div class="container">
+        <div class="row result-container" id="result-grid">
+        </div>
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='./js/search.js')}}"></script>
+{% endblock main %}
