@@ -1,0 +1,42 @@
+{% extends "components/base.html" %}
+
+{% block title %}The Movie App{% endblock title %}
+
+{% block main %}
+
+{% include "components/navbar.html" %}
+
+    <div class="search-container">
+        <div class="search-element">
+            <h3 style="margin: 3vh 5vw">Search Movie:</h3>
+            <div style="display: flex-inline;  margin: 2vh 5vw;">
+                <form method="GET" action="{{ url_for('search_movies') }}" id="search-form">
+                    <input type="text" class="form-control me-3" placeholder="Search Movie Title ..."
+                        name="query">
+                    <button type="submit" class="btn btn-primary search-button">Search</button>
+            </div>
+    
+        </div>
+
+
+    <div class="container">
+        <div class="row result-container" id="result-grid">
+            {% for movie in movies %}
+            <div class="col-md-3 mt-2 mb-3">
+                <div class="card h-100">
+                    <img class="card-img-top"
+                        src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                        alt="Movie Poster">
+                    <div class="card-body d-flex flex-column">
+                        <a class="card-title"
+                            href="{{ url_for('movie_id', id=movie.id) }}">{{ movie.title }}</a>
+                        <p class="card-text">{{ movie.overview[:100] ~ '...' }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
