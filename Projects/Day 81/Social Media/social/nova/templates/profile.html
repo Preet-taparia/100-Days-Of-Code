@@ -1,0 +1,54 @@
+{% extends 'components/base.html' %}
+
+{% block title %} Profile: {{profile.user.username}} {% endblock title %}
+
+{% block main %}
+
+{% if profile %}
+
+
+<div class="row">
+    <div class="col-8">
+        <h1> {{profile.user.username}}'s Profile</h1>
+    </div>
+
+    <div class="col-4">
+
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-follower-tab" data-bs-toggle="tab" data-bs-target="#nav-follower"
+                    type="button" role="tab" aria-controls="nav-follower" aria-selected="true">Follower</button>
+                <button class="nav-link" id="nav-following-tab" data-bs-toggle="tab" data-bs-target="#nav-following"
+                    type="button" role="tab" aria-controls="nav-following" aria-selected="false">Following</button>
+            </div>
+        </nav>
+
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-follower" role="tabpanel" aria-labelledby="nav-follower-tab"
+                tabindex="0">
+                {% for follower in profile.followed_by.all %}
+
+                <a href="{% url 'profile' follower.user.id %}">@{{follower}}</a>
+                <br>
+
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="nav-following" role="tabpanel" aria-labelledby="nav-following-tab" tabindex="0">
+                {% for following in profile.follows.all %}
+
+                <a href="{% url 'profile' following.user.id %}">@{{following}}</a>
+                <br>
+
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endif %}
+
+{% endblock main %}
