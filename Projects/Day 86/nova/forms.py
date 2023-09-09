@@ -1,8 +1,16 @@
-from typing import Any
 from django import forms
-from .models import Posts
+from .models import Posts, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+class ProflePictureForm(forms.ModelForm):
+    profile_image = forms.ImageField(label="Profile Picture")
+
+    class Meta:
+        model = Profile
+        fields = ('profile_image',)
+
 
 
 class PostForm(forms.ModelForm):
